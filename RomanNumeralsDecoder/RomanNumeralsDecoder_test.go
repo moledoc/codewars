@@ -3,7 +3,7 @@ package romannumeralsdecoder_test
 import (
 	"testing"
 
-	decoder "github.com/moledoc/codewars/RomanNumeralsdeCoder"
+	decoder "github.com/moledoc/codewars/RomanNumeralsDecoder"
 )
 
 type fn func(string) int
