@@ -6,8 +6,8 @@ Return a new **sorted** string, the longest possible, containing distinct letter
 ```sh
 a = "xyaabbbccccdefww"
 b = "xxxxyyyyabklmopq"
-longest(a, b) -> "abcdefklmopqwxy"
+TwoToOne(a, b) -> "abcdefklmopqwxy"
 
 a = "abcdefghijklmnopqrstuvwxyz"
-longest(a, a) -> "abcdefghijklmnopqrstuvwxyz"
+TwoToOne(a, a) -> "abcdefghijklmnopqrstuvwxyz"
 ```
