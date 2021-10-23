@@ -25,7 +25,7 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
-    filecolor=magenta,      
+    filecolor=magenta,
     urlcolor=cyan,
 }
 \setlength{\voffset}{-0.75in}
@@ -47,7 +47,7 @@ The population regularly increases by $percent\%$ per year and moreover $aug$ ne
 How many years $N$ does the town need to see its population greater or equal to $P_N$ inhabitants?
 Arguments $P_0$, $P_N$, $percent$ and $aug$ are known.
 
-\subsection*{Proof}
+\subsection*{Derivation}
 First, lets denote
 \begin{equation*}
     r = \bigg(1+\frac{percent}{100}\bigg)
@@ -56,8 +56,8 @@ To can use the following formulas to find the population at $N$th year:
 \begin{align}
     \nonumber P_1 &= rP_0 + aug\\
     \nonumber P_2 &= rP_1 + aug \Rightarrow P_2 = r^{2}P_0 + (r + 1)aug\\
-    \nonumber P_3 &= r^{3}P_2 + aug \Rightarrow P_3 = r^{3}P_0 + (r^{2} + r + 1)aug\\
-    \nonumber P_4 &= r^{4}P_3 + aug \Rightarrow P_4 = r^{4}P_0 + (r^{3} + r^{2} + r + 1)aug\\
+    \nonumber P_3 &= rP_2 + aug \Rightarrow P_3 = r^{3}P_0 + (r^{2} + r + 1)aug\\
+    \nonumber P_4 &= rP_3 + aug \Rightarrow P_4 = r^{4}P_0 + (r^{3} + r^{2} + r + 1)aug\\
     \nonumber &...\\
     P_N &= r^{N}P_0 + \sum_{i=0}^{N-1}r^{i}aug \label{growth-fun}
 \end{align}
@@ -72,24 +72,29 @@ We have two cases we need to handle:
 \begin{equation*}
     P_N = P_0+N\cdot aug.
 \end{equation*}
-When $percent = 0$, then we notice, that for variable $aug$ a geometric series $[\ref{geom}]$ forms.
-We know, that when $r\ne 1$, then 
+When $percent \ne 0$, then we notice, that for variable $aug$ a geometric series $[\ref{geom}]$ forms.
+We know, that when $r\ne 1$, then
 \begin{equation}
     \sum_{i=0}^{N-1}r^{i}aug = aug\frac{1-r^{N}}{1-r}. \label{geom-series}
 \end{equation}
-Since $r$ is always $r>1$ in our case, then we can write $(\ref{geom-series})$ as 
+Since $r$ is always $r>1$ in our case, then we can write $(\ref{geom-series})$ as
 \begin{equation}
     aug\frac{r^{N}-1}{r-1}. \label{geom-series-inv}
 \end{equation}
-Substituting $(\ref{geom-series-inv})$ into $(\ref{growth-fun})$ we get $[\ref{wolfalpha}]$
+Substituting $(\ref{geom-series})$ and $(\ref{geom-series-inv})$ into $(\ref{growth-fun})$ we get
 \begin{align*}
-    N = \frac{\log\big(\frac{aug+rP_N-P_N}{aug+rP_0-P_0}\big)}{\log(r)}.
+    P_{N} &= r^{N}P_{0} + aug\frac{r^{N}-1}{r-1}\\
+    P_{N} &= \frac{r^{N}(r-1)P_{0} + aug\cdot r^{N}-aug}{r-1}\\
+    P_{N} &= \frac{r^{N}\big[(r-1)P_{0} + aug\big]-aug}{r-1}\\
+    &\Rightarrow r^{N} = \frac{(r-1)P_{N}+aug}{(r-1)P_{0} + aug} \bigg | \log\\
+    &\Rightarrow N\log(r) = \log\bigg(\frac{(r-1)P_{N}+aug}{(r-1)P_{0} + aug}\bigg)\\
+    &\Rightarrow N = \frac{\log\bigg(\frac{(r-1)P_{N}+aug}{(r-1)P_{0} + aug}\bigg)}{\log(r)}.
+    \qed
 \end{align*}
 
 \section*{Cites}
 \begin{enumerate}
     \item \url{https://en.wikipedia.org/wiki/Geometric_series} \label{geom}
-    \item \url{https://www.wolframalpha.com/input/?i=p\%3Dr\%5Ex*p_0\%2B\%5Csum_\%7Bi\%3D0\%7D\%5E\%7Bx-1\%7D+ar\%5Ei} \label{wolfalpha}
 \end{enumerate}
 
 \end{document}

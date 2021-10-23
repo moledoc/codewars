@@ -1,7 +1,11 @@
-package growthofapopulation
+// package growthofapopulation
+package main
 
 import (
+	"flag"
+	"fmt"
 	"math"
+	"time"
 )
 
 // use math to solve the problem
@@ -31,4 +35,29 @@ func NbYearForce(p0 int, percent float64, aug int, p int) int {
 		pIt = (1+percent/100)*pIt + float64(aug)
 	}
 	return counter
+}
+
+func main() {
+	p0 := flag.Int("p0", 0, "P_0")
+	p := flag.Float64("p", 0, "percent")
+	aug := flag.Int("aug", 0, "augment")
+	pn := flag.Int("pn", 0, "P_N")
+	flag.Parse()
+	if (*p0) == 0 && (*p) == 0 && (*aug) == 0 && (*pn) == 0 {
+		(*p0) = 100
+		(*p) = 0.001
+		(*aug) = 10
+		(*pn) = 1000000000000000000
+	}
+	i := 100
+	for i < (*pn) {
+		startCalc := time.Now()
+		NbYear(*p0, *p, *aug, i)
+		endCalc := time.Since(startCalc)
+		startIter := time.Now()
+		NbYearForce(*p0, *p, *aug, i)
+		endIter := time.Since(startIter)
+		fmt.Printf("%-20v%-10v%-10s\n", i, endCalc, endIter)
+		i *= 10
+	}
 }
