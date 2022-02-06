@@ -1,4 +1,4 @@
-package main
+package ludicnumbers
 
 import (
 	"fmt"
@@ -40,12 +40,13 @@ func SumLudic(n int) int {
 	return sum
 }
 
-func main() {
-	test1 := SumLudic(1)
-	test2 := SumLudic(10)
-	test3 := SumLudic(25)
-	fmt.Println(test1, test2, test3)
-	test(test1).Assert(test(1))
-	test(test2).Assert(test(107))
-	test(test3).Assert(test(1100))
-}
+// func main() {
+// 	test1 := SumLudic(1)
+// 	test2 := SumLudic(10)
+// 	test2 := SumLudic(10)
+// 	test3 := SumLudic(25)
+// 	fmt.Println(test1, test2, test3)
+// 	test(test1).Assert(test(1))
+// 	test(test2).Assert(test(107))
+// 	test(test3).Assert(test(1100))
+// }
